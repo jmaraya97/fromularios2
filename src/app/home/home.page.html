@@ -1,20 +1,84 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Registro
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content padding class="form-content">
+  <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">Usuario</ion-label>
+      <ion-input type="text" formControlName="usuario"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.usuario">
+        <div class="error-message" *ngIf="validations_form.get('usuario').hasError(validation.type)
+      && (validations_form.get('usuario').dirty
+      || validations_form.get('usuario').touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-item>
+      <ion-label position="floating" color="primary">Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.nombre">
+        <div class="error-message" *ngIf="validations_form.get('nombre').hasError(validation.type)
+      && (validations_form.get('nombre').dirty
+      || validations_form.get('nombre').touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Apellidos</ion-label>
+      <ion-input type="text" formControlName="apellidos"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.apellidos">
+        <div class="error-message" *ngIf="validations_form.get('apellidos').hasError(validation.type)
+      && (validations_form.get('apellidos').dirty
+      || validations_form.get('apellidos').touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Fecha de nacimiento</ion-label>
+      <ion-input type="text" formControlName="fecha"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.fecha">
+        <div class="error-message" *ngIf="validations_form.get('fecha').hasError(validation.type)
+      && (validations_form.get('fecha').dirty
+      || validations_form.get('fecha').touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">DNI</ion-label>
+      <ion-input type="text" formControlName="dni"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.dni">
+        <div class="error-message" *ngIf="validations_form.get('dni').hasError(validation.type)
+      && (validations_form.get('dni').dirty
+      || validations_form.get('dni').touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button color="primary" class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">
+      Submit data</ion-button>
+  </form>
 </ion-content>
